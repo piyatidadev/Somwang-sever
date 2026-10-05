@@ -1,0 +1,60 @@
+const { authJwt } = require("../../middlewares")
+const express = require("express")
+const app = express()
+const fs = require("fs")
+const { AttachmentController,HistoryController, SiteController, ProjectController,ProductController, PromotionController, StockController } = require("../../controllers")
+
+module.exports = function (app) {
+  //attachment
+  app.post("/attachment/getAttachmentBy", authJwt.verifyToken, AttachmentController.getAttachmentBy)
+  app.post("/attachment/getAttachmentById", authJwt.verifyToken, AttachmentController.getAttachmentById)
+  app.post("/attachment/getAttachmentByRefId", authJwt.verifyToken, AttachmentController.getAttachmentByRefId)
+  app.post("/attachment/insertAttachment", authJwt.verifyToken, AttachmentController.insertAttachment)
+  app.post("/attachment/updateAttachmentById", authJwt.verifyToken, AttachmentController.updateAttachmentById)
+  app.post("/attachment/updateAttachmentByRefId", authJwt.verifyToken, AttachmentController.updateAttachmentByRefId)
+  app.post("/attachment/deleteAttachmentById", authJwt.verifyToken, AttachmentController.deleteAttachmentById)
+
+  app.post("/site/getSiteBy", authJwt.verifyToken, SiteController.getSiteBy)
+  app.post("/site/getSiteById", authJwt.verifyToken, SiteController.getSiteById)
+  app.post("/site/insertSite", authJwt.verifyToken, SiteController.insertSite)
+  app.post("/site/updateSiteById", authJwt.verifyToken, SiteController.updateSiteById)
+  app.post("/site/deleteSiteById", authJwt.verifyToken, SiteController.deleteSiteById)
+
+  app.post("/project/getProjectBy", authJwt.verifyToken, ProjectController.getProjectBy)
+  app.post("/project/getProjectById", authJwt.verifyToken, ProjectController.getProjectById)
+  app.post("/project/insertProject", authJwt.verifyToken, ProjectController.insertProject)
+  app.post("/project/updateProjectById", authJwt.verifyToken, ProjectController.updateProjectById)
+  app.post("/project/deleteProjectById", authJwt.verifyToken, ProjectController.deleteProjectById)
+
+  app.post("/product/getProductBy",  ProductController.getProductBy)
+  app.post("/product/getProductById",  ProductController.getProductById)
+  app.post("/product/insertProduct", ProductController.insertProduct)
+  app.post("/product/updateProductById",  ProductController.updateProductById)
+  app.post("/product/updateProductChechBillById",  ProductController.updateProductChechBillById)
+  app.post("/product/deleteProductById", ProductController.deleteProductById)
+  app.post("/product/getProductOutOfStock", ProductController.getProductOutOfStock)
+  
+  app.post("/promotion/getPromotionBy", authJwt.verifyToken, PromotionController.getPromotionBy)
+  app.post("/promotion/getPromotionById", authJwt.verifyToken, PromotionController.getPromotionById)
+  app.post("/promotion/insertPromotion", authJwt.verifyToken, PromotionController.insertPromotion)
+  app.post("/promotion/updatePromotionById", authJwt.verifyToken, PromotionController.updatePromotionById)
+  app.post("/promotion/deletePromotionById", authJwt.verifyToken, PromotionController.deletePromotionById)
+
+  app.post("/stock/getStockBy", authJwt.verifyToken, StockController.getStockBy)
+  app.post("/stock/getStockStatusCheckBillBy", authJwt.verifyToken, StockController.getStockStatusCheckBillBy)
+  app.post("/stock/getStockCheckBillBy", authJwt.verifyToken, StockController.getStockCheckBillBy)
+  app.post("/stock/getStockById", authJwt.verifyToken, StockController.getStockById)
+  app.post("/stock/insertStock", authJwt.verifyToken, StockController.insertStock)
+  app.post("/stock/updateStockById", authJwt.verifyToken, StockController.updateStockById)
+  app.post("/stock/updateCheckBillById", authJwt.verifyToken, StockController.updateCheckBillById)
+  app.post("/stock/deleteStockById", authJwt.verifyToken,StockController.deleteStockById)
+
+  app.post("/history/getHistoryBy", authJwt.verifyToken, HistoryController.getHistoryBy)
+  app.post("/history/getHistoryById", authJwt.verifyToken, HistoryController.getHistoryById)
+  app.post("/history/updateHistoryById", authJwt.verifyToken, HistoryController.updateHistoryById)
+  app.post("/history/deleteHistoryById", authJwt.verifyToken, HistoryController.deleteHistoryById)
+  app.post("/history/getHistoryOutOfStock", authJwt.verifyToken, HistoryController.getHistoryOutOfStock)
+  app.post("/history/insertHistoryProduct", authJwt.verifyToken, HistoryController.insertHistoryProduct)
+  app.post("/history/getHistorySalesBy", authJwt.verifyToken, HistoryController.getHistorySalesBy)
+
+}
