@@ -145,7 +145,7 @@ Task.deleteAttachmentById = function deleteAttachmentById(data, connection) {
         return 0;
       }
       res.forEach((item) => {
-        let filePath = "uploads/" + item.ref_vdo;
+        let filePath = (process.env.VERCEL ? "/tmp/uploads/" : "uploads/") + item.ref_vdo;
         fs.unlink(filePath, (err, data) => {
           if (err) {
             reject({ data: [], require: false, err: err });
